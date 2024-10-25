@@ -4,9 +4,9 @@ const TasksContext = createContext(null); // provides current list of tasks
 const TasksDispatchContext = createContext(null); // provides teh function that lets components dispatch actions
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 0, text: 'Water the plants', done: true },
+  { id: 1, text: 'Read a mystery book', done: false },
+  { id: 2, text: 'Cook a delicious dinner', done: false }
 ];
 
 export function TasksProvider({ children }) 

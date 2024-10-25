@@ -5,8 +5,7 @@ import { TasksProvider } from './components/TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Tasks Manager</h1>
-      <AddTask />
+      {/* <h1>Tasks Manager</h1> */}
       <TaskList />
     </TasksProvider>
   );
