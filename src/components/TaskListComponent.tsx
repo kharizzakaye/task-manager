@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useTasks, useTasksDispatch } from './TasksContext.js';
-import AddTask from './AddTaskComponent.js';
+import { useTasks, useTasksDispatch } from './TasksContext';
+import AddTask from './AddTaskComponent';
 
 export default function TaskListComponent() {
-    const [incompleteTasks, setIncompleteTasks] = useState(0);
+    const [incompleteTasksCount, setIncompleteTasksCount] = useState<number>(0);
     const tasks = useTasks();
 
     useEffect(() => {
-        const filteredTasks = tasks.filter(ta => ta.done === false);
-        setIncompleteTasks(filteredTasks.length);
+        const filteredTasks = tasks.filter((task: any) => task.done === false);
+        setIncompleteTasksCount(filteredTasks.length);
     }, [tasks]);
     
     return (
@@ -20,11 +20,11 @@ export default function TaskListComponent() {
 
                 <AddTask />
 
-                <p className="font-semibold mb-5">Incomplete tasks: { incompleteTasks }</p>
+                <p className="font-semibold mb-5">Incomplete tasks: { incompleteTasksCount }</p>
 
                 <div>
                     <ul>
-                        {tasks.map(task => (
+                        {tasks.map((task: any) => (
                             <li key={task.id}>
                                 <Task task={task} />
                             </li>
@@ -38,8 +38,15 @@ export default function TaskListComponent() {
 }
 
 
-function Task({ task }) {
+function Task({ task } : any) {
     const dispatch = useTasksDispatch();
+
+    const onRemoveTaskHandler = () => {
+        dispatch({
+            type: 'deleted',
+            id: task.id
+        });
+    }
 
     return (
         <div className="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
@@ -64,12 +71,7 @@ function Task({ task }) {
 
             <button 
                 className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded mx-2 text-sm"
-                onClick={() => {
-                    dispatch({
-                        type: 'deleted',
-                        id: task.id
-                    });
-                }}
+                onClick={ onRemoveTaskHandler }
             >
                 Remove
             </button>

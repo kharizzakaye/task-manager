@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from 'react';
 
-const TasksContext = createContext(null); // provides current list of tasks
-const TasksDispatchContext = createContext(null); // provides teh function that lets components dispatch actions
+const TasksContext = createContext<any>(null); // provides current list of tasks
+const TasksDispatchContext = createContext<any>(null); // provides teh function that lets components dispatch actions
 
 const initialTasks = [
   { id: 0, text: 'Water the plants', done: true },
@@ -9,7 +9,7 @@ const initialTasks = [
   { id: 2, text: 'Cook a delicious dinner', done: false }
 ];
 
-export function TasksProvider({ children }) 
+export function TasksProvider({ children } : any) 
 {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
@@ -36,7 +36,7 @@ export function useTasksDispatch()
 }
 
 // Reducer function
-function tasksReducer(tasks, action) 
+function tasksReducer(tasks: any, action: any) 
 {
   switch (action.type) 
   {
@@ -48,22 +48,25 @@ function tasksReducer(tasks, action)
         done: false
       }];
     }
-    case 'changed': {
-      return tasks.map(t => {
-        if (t.id === action.task.id) 
+    case 'changed': 
+    {
+      return tasks.map((item: any) => {
+        if (item.id === action.task.id) 
         {
           return action.task;
         } 
         else 
         {
-          return t;
+          return item;
         }
       });
     }
-    case 'deleted': {
-      return tasks.filter(t => t.id !== action.id);
+    case 'deleted': 
+    {
+      return tasks.filter((task: any) => task.id !== action.id);
     }
-    default: {
+    default: 
+    {
       throw Error('Unknown action: ' + action.type);
     }
   }
