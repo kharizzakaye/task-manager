@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTasks, useTasksDispatch } from './TasksContext.js';
-import AddTask from './AddTask.js';
+import AddTask from './AddTaskComponent.js';
 
-export default function TaskList() {
+export default function TaskListComponent() {
     const [incompleteTasks, setIncompleteTasks] = useState(0);
     const tasks = useTasks();
 
