@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTasksDispatch } from "./TasksContext";
 
 export default function AddTask() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState<string>('');
   const dispatch = useTasksDispatch();
 
   const onAddTaskHandler = () => {

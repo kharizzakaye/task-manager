@@ -35,7 +35,6 @@ export function useTasksDispatch()
   return useContext(TasksDispatchContext);
 }
 
-// Reducer function
 function tasksReducer(tasks: any, action: any) 
 {
   switch (action.type) 
