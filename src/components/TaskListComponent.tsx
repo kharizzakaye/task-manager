@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useTasks, useTasksDispatch } from './TasksContext';
 import AddTask from './AddTaskComponent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 export default function TaskListComponent() {
     const [incompleteTasksCount, setIncompleteTasksCount] = useState<number>(0);
@@ -73,7 +75,7 @@ function Task({ task } : any) {
                 className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded mx-2 text-sm"
                 onClick={ onRemoveTaskHandler }
             >
-                Remove
+                <FontAwesomeIcon icon={faTrashCan} />
             </button>
         </div>
     );

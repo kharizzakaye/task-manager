@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTasksDispatch } from "./TasksContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function AddTask() {
   const [text, setText] = useState<string>('');
@@ -37,7 +39,8 @@ export default function AddTask() {
             type="button"
             onClick={onAddTaskHandler}
           >
-            Add Task
+            <FontAwesomeIcon icon={faPlus} />
+            {" "} Add Task
           </button>
         </div>
       </div>
